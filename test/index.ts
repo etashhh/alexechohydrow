@@ -14,13 +14,13 @@ describe("Hydrow x Alex Echo Collab", () => {
 
     const Hydrow = await ethers.getContractFactory("HydrowAlexEchoCollab", owner);
 
-    hydrow = (await Hydrow.deploy("Alex Echo Hydrow Collab", "AEHYDROW", 30)) as HydrowAlexEchoCollab;
+    hydrow = (await Hydrow.deploy("Hydrow Alex Echo Collab", "HYDROWAE", 30)) as HydrowAlexEchoCollab;
     await hydrow.deployed();
   });
   describe("Deployment tests", () => {
     it("Should make sure the correct constructor arguments are set", async () => {
-      expect(await hydrow.name()).to.equal("Alex Echo Hydrow Collab");
-      expect(await hydrow.symbol()).to.equal("AEHYDROW");
+      expect(await hydrow.name()).to.equal("Hydrow Alex Echo Collab");
+      expect(await hydrow.symbol()).to.equal("HYDROWAE");
       expect(await hydrow.maxSupply()).to.equal(30);
     });
     it("Should make sure the owner is set correctly", async () => {
