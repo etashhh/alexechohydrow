@@ -18,8 +18,21 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.4",
+  solidity: {
+    compilers: [
+      {
+        version: "0.8.4",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1000
+          }
+        }
+      }
+    ]
+  },
   networks: {
+    hardhat: {},
     rinkeby: {
       url: process.env.RINKEBY_URL || "",
       accounts:
@@ -29,6 +42,7 @@ const config: HardhatUserConfig = {
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
     currency: "USD",
+    coinmarketcap: process.env.CMC_API_KEY || "",
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
