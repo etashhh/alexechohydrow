@@ -32,6 +32,11 @@ describe("Hydrow x Alex Echo Collab", () => {
       await hydrow.setTokenBaseURI(uri);
       await hydrow.airdrop([acct1.address], 30);
       expect(await hydrow.tokenURI(0)).to.equal("ipfs://hash/0");
+      expect(await hydrow.tokenURI(29)).to.equal("ipfs://hash/29");
+    });
+    it("Should airdrop and then make sure the total supply is 30", async () => {
+      await hydrow.airdrop([acct1.address], 30);
+      expect(await hydrow.totalSupply()).to.equal(30);
     });
     it("Shouldn't let you airdrop more than the max supply", async () => {
       await expect(hydrow.airdrop([acct1.address], 31)).to.be.revertedWith("Exceeds max supply limit.");
